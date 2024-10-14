@@ -71,6 +71,13 @@ jobs:
     uses: ./.github/workflows/reusable.yml 
     with: 
       artifact-name: dist-files
+
+  print-ouput-report:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy output
+        run: echo "${{ needs.deploy.outputs.result}}"
   report:
     needs: [lint, deploy]
     runs-on: ubuntu-latest
@@ -80,3 +87,4 @@ jobs:
         run: |
           echo "Something went wrong"
           echo {{ toJSON(github) }}
+

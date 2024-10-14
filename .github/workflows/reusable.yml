@@ -1,5 +1,14 @@
 name: Reusable-deploy
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      artifact-name:
+        description: Please enter the name of deployable artifact files
+        required: false
+        default: dist
+        type: string
+
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
